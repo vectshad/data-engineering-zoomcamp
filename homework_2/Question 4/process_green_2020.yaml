@@ -1,0 +1,34 @@
+id: process_green_2020
+namespace: zoomcamp
+description: |
+  Process all Green taxi data for 2020 (12 months) using ForEach loop.
+  This flow will call 04_postgres_taxi as a subflow for each month.
+
+tasks:
+  - id: foreach_month
+    type: io.kestra.plugin.core.flow.ForEach
+    values: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    tasks:
+      - id: process_month
+        type: io.kestra.plugin.core.flow.Subflow
+        namespace: zoomcamp
+        flowId: 04_postgres_taxi
+        inputs:
+          taxi: green
+          year: "2020"
+          month: "{{ taskrun.value }}"
+
+  - id: count_total_rows
+    type: io.kestra.plugin.jdbc.postgresql.Query
+    fetchType: FETCH
+    sql: |
+      SELECT COUNT(*) as total_rows 
+      FROM public.green_tripdata 
+      WHERE filename LIKE 'green_tripdata_2020-%';
+
+pluginDefaults:
+  - type: io.kestra.plugin.jdbc.postgresql
+    values:
+      url: jdbc:postgresql://pgdatabase:5432/ny_taxi
+      username: root
+      password: root

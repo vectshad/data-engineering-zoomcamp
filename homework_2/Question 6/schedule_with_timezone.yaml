@@ -1,0 +1,41 @@
+id: schedule_with_timezone_example
+namespace: zoomcamp
+description: |
+  Example flow demonstrating how to configure timezone to New York in a Schedule trigger.
+  This shows the correct answer for Question 6.
+
+inputs:
+  - id: taxi
+    type: SELECT
+    displayName: Select taxi type
+    values: [yellow, green]
+    defaults: yellow
+
+tasks:
+  - id: log_execution_time
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      Execution triggered at: {{ trigger.date ?? execution.startDate }}
+      Timezone configured: America/New_York
+      This schedule runs at 9:00 AM New York time
+
+  - id: show_timezone_info
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      The timezone property is set to 'America/New_York' in the Schedule trigger.
+      This properly handles:
+      - EST (Eastern Standard Time) during winter: UTC-5
+      - EDT (Eastern Daylight Time) during summer: UTC-4
+      
+      Other options were INCORRECT:
+      - EST: Doesn't handle daylight saving time
+      - UTC-5: Doesn't account for EDT
+      - location property: Doesn't exist in Schedule triggers
+
+triggers:
+  - id: schedule_new_york_time
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "0 9 * * *"
+    timezone: America/New_York
+    inputs:
+      taxi: yellow
