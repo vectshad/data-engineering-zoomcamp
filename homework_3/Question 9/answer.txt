@@ -1,0 +1,4 @@
+SELECT COUNT(*)
+FROM taxi_data.yellow_tripdata;
+
+It should be 0 MBbecause BigQuery stores table metadata separately, doesn't need to scan data.

@@ -1,0 +1,6 @@
+*.parquet
+yellow_taxi_2024/
+temp_data/
+de-zoomcamp-key.json
+*.json
+__pycache__/
