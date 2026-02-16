@@ -1,0 +1,23 @@
+# Data directory
+data/
+
+# Course materials (reference only)
+course/
+
+# DuckDB database files
+*.duckdb
+*.duckdb.wal
+
+# Large data files
+*.csv
+*.csv.gz
+*.parquet
+
+# dbt artifacts
+target/
+dbt_packages/
+logs/
+
+# Python cache
+__pycache__/
+*.pyc
