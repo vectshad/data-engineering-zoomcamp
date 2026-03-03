@@ -1,0 +1,1 @@
+Answer: c) time_interval - incremental based on a time column

@@ -1,0 +1,1 @@
+Answer: b) bruin run ingestion/trips.py --downstream
