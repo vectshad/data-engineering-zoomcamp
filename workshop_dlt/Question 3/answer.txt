@@ -1,0 +1,25 @@
+Question 3: What is the total amount of money generated in tips?
+
+Answer: b) $6,063.41
+
+Options:
+a) $4,063.41
+b) $6,063.41  ← CORRECT
+c) $8,063.41
+d) $10,063.41
+
+My answer: b
+
+Query used:
+SELECT 
+    ROUND(SUM(tip_amt), 2) as total_tips
+FROM nyc_taxi.taxi_trips;
+
+Result:
+Total Tips: $6,063.41
+
+Additional statistics:
+- Total trips: 10,000
+- Min tip: $0.00
+- Max tip: $38.80
+- Average tip: $0.61

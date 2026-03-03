@@ -1,0 +1,26 @@
+Question 2: What proportion of trips are paid with credit card?
+
+Answer: b) 26.66%
+
+Options:
+a) 16.66%
+b) 26.66%  ← CORRECT
+c) 36.66%
+d) 46.66%
+
+My answer: b
+
+Query used:
+SELECT 
+    ROUND(100.0 * SUM(CASE WHEN payment_type = 'Credit' THEN 1 ELSE 0 END) / COUNT(*), 2) as credit_pct
+FROM nyc_taxi.taxi_trips;
+
+Result:
+Credit Card Proportion: 26.66%
+
+Payment breakdown:
+- CASH: 7,235 trips
+- Credit: 2,666 trips (26.66%)
+- Cash: 97 trips
+- Dispute: 1 trip
+- No Charge: 1 trip
