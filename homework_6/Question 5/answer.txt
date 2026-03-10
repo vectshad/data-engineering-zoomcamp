@@ -1,0 +1,15 @@
+Question 5: What is the default Spark UI port?
+
+Answer Options:
+a) 80
+b) 443
+c) 4040
+d) 8080
+
+My Answer: 
+
+Note: This is a knowledge question - no code execution needed.
+
+The Spark UI automatically runs on port 4040 by default.
+
+Screenshot: (Not required for knowledge question)
